@@ -1,0 +1,70 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" #messageForm="ngForm">
+
+      <div class="form-group">
+        <label for="user">Name Addressee</label>
+        <select class="form-control" id="user"
+                name="user" [(ngModel)]="messageSettings.userAddresseeId">
+          <option value="">Choose Addressee</option>
+          <option value="{{user.id}}" *ngFor="let user of userList">
+            {{ user.name }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <input type="text" [(ngModel)]="messageSettings.content"
+               class="form-control"
+               id="message"
+               ngModel name="message"
+               placeholder="Enter content"
+               required="required"
+               #message="ngModel">
+        <div *ngIf="message.invalid && (message.dirty || message.touched)"
+             class="alert alert-danger">
+        </div>
+      </div>
+      <br>
+      <button type="submit" [disabled]="!messageForm.form.valid"
+              class="btn btn-info">Submit</button>
+      <button type="reset" class="btn btn-info" (click)="reset()">Reset</button>
+    </form>
+  </div>
+</div>
+
+
+
+<button (click)="goToUsers()" class="btn btn-info"><i class="fa fa-futboll-0">GoToUsers</i>
+</button>
+
+<button (click)="changeMessageListByUserAddressee()" class="btn btn-info"><i class="fa fa-futboll-0">INBOX</i>
+</button>
+
+<button (click)="changeMessageListByUserSender()" class="btn btn-info"><i class="fa fa-futboll-0">SENT</i>
+</button>
+
+<div className="table-responsive">
+  <div class="card my-5">
+    <div class="card-body">
+      <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="row">Content</th>
+          <th scope="row"> </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="active-row" *ngFor='let message of messageList'>
+          <td>{{message.content}}</td>
+          <td>
+            <button (click)="deleteMessage(message.id)" class="btn btn-danger"><i class="fa fa-futboll-0">DELETE</i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

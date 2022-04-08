@@ -1,0 +1,59 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+
+      <div class="form-group">
+        <label for="user">New User</label>
+        <input type="text" [(ngModel)]="userSettings.name"
+               class="form-control"
+               id="user"
+               ngModel name="user"
+               placeholder="Enter name"
+               required="required"
+               #user="ngModel">
+        <div *ngIf="user.invalid && (user.dirty || user.touched)"
+             class="alert alert-danger">
+        </div>
+      </div>
+      <br>
+      <button type="submit" [disabled]="!userForm.form.valid"
+              class="btn btn-info">Submit
+      </button>
+      <button type="reset" class="btn btn-info" (click)="reset()">Reset</button>
+    </form>
+  </div>
+</div>
+
+
+<div className="table-responsive">
+  <div class="card my-5">
+    <div class="card-body">
+      <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
+        <tr>
+
+          <th scope="row">User name</th>
+          <th scope="row">Go to message</th>
+          <th scope="row">#</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="active-row" *ngFor='let user of userList'>
+          <td>{{user.name}}</td>
+          <td>
+            <button (click)="goToMessage(user.id)" class="btn btn-info"><i class="fa fa-futboll-0">Message</i>
+            </button>
+          </td>
+          <td>
+            <button (click)="deleteUser(user.id)" class="btn btn-danger"><i class="fa fa-futboll-0">DELETE</i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+

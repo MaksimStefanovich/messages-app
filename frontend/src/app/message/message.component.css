@@ -1,0 +1,20 @@
+select:focus {
+  background-color: lightblue;
+  border: 3px solid #555;
+}
+select {
+  max-width: 200px;
+  width: 80%;
+  min-width: 50px;
+}
+input:focus {
+  background-color: lightblue;
+  border: 3px solid #555;
+}
+.table-responsive {
+  height: 400px;
+  overflow: scroll;
+}
+
+.btn btn-info
+{margin-right: 10%;}
